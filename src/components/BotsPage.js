@@ -19,7 +19,18 @@ function BotsPage() {
 
     function initiateSelfDestruct (decomissionedBot) {
       setAllBots(allBots.filter((bot)=> bot.id !== decomissionedBot.id))
+      backendDelete(decomissionedBot.id)
     }
+
+    function backendDelete(id){
+      fetch(API + "/" + id, {
+        method: 'DELETE'
+      }).then(()=> {
+        console.log("removed");
+      }).catch(err=> {
+        console.error(err)
+      });
+      }
 
   return (
     <div>
